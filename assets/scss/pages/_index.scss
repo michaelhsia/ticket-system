@@ -1,3 +1,86 @@
-.index-title {
-  font-size: 100px;
+body {
+  font-family: "Noto Sans", sans-serif;
+  color: $highlight;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.mt-120 {
+  margin-top: 60px;
+  @media (min-width: 768px) {
+    margin-top: 120px;
+  }
+}
+
+.mb-100 {
+  margin-bottom: 50px;
+  @media (min-width: 768px) {
+    margin-bottom: 100px;
+  }
+}
+
+.inputWrap {
+  max-width: 920px !important;
+  @media (min-width: 768px) {
+    border-radius: 12px;
+    box-shadow: 0px 3px 6px #00000029;
+    padding: 60px 95px !important;
+  }
+}
+
+.mainImg {
+  width: 350px;
+  height: 250px;
+}
+
+.indexLogo {
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+    width: 350px;
+    height: 235px;
+    background: url("https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/logo.png?raw=true");
+    background-size: cover;
+    text-indent: 101%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+form {
+  input {
+    width: 100% !important;
+    color: #818a91 !important;
+    @media (min-width: 576px) {
+      width: 70% !important;
+    }
+  }
+  select {
+    width: 100% !important;
+    color: #818a91 !important;
+    @media (min-width: 576px) {
+      width: 70% !important;
+    }
+  }
+  textarea {
+    width: 100% !important;
+    @media (min-width: 576px) {
+      width: 70% !important;
+    }
+  }
+  .submitBtn {
+    width: 160px !important;
+    color: #ffffff !important;
+    border-radius: 5px !important;
+    padding: 10px 40px !important;
+    transition: all 0.3s ease;
+    &:hover {
+      color: $highlight !important;
+      background: $soft !important;
+    }
+    @media (min-width: 768px) {
+    }
+  }
 }
