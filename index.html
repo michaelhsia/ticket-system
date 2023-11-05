@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>index</title>
+    <script type="module" crossorigin src="/web-layout-training-vite/assets/index-7f81e24b.js"></script>
+    <link rel="stylesheet" href="/web-layout-training-vite/assets/index-c9971cb0.css">
+  </head>
+  <body>
+        <div
+      class="inputWrap container d-md-flex justify-content-between align-items-center mt-120 mb-100"
+    >
+      <section
+        class="d-flex flex-column justify-content-center align-items-center"
+      >
+        <a href="#" class="d-block mainImg"
+          ><img
+            src="https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/main_img.png?raw=true"
+            alt="首頁大圖"
+            class="img-fluid"
+        /></a>
+        <h1><a href="#" class="indexLogo">Let's Travel</a></h1>
+      </section>
+      <section>
+        <h2
+          class="fs-4 p-1 text-highlight border-bottom border-3 border-highlight mb-8"
+        >
+          <i class="fs-5 fa-solid fa-circle-plus me-2"></i
+          ><span>新增旅遊套票</span>
+        </h2>
+        <form action="#">
+          <div
+            class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mb-4"
+          >
+            <label class="text-highlight fw-bold mb-2 mb-sm-0" for="ticketName"
+              >套票名稱</label
+            >
+            <input
+              id="ticketName"
+              type="text"
+              class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
+              placeholder="請填寫套票名稱"
+            />
+          </div>
+          <div
+            class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mb-4"
+          >
+            <label class="text-highlight fw-bold" for="">圖片網址</label>
+            <input
+              type="text"
+              class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
+              placeholder="請填寫圖片網址"
+            />
+          </div>
+          <div
+            class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mb-4"
+          >
+            <label class="text-highlight fw-bold" for="city">景點地區</label>
+            <select
+              class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
+              name="city"
+              id="city"
+            >
+              <option selected>請填寫景點地區</option>
+              <option value="台北">台北</option>
+              <option value="台中">台中</option>
+              <option value="高雄">高雄</option>
+            </select>
+          </div>
+          <div
+            class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mb-4"
+          >
+            <label class="text-highlight fw-bold" for="">套票金額</label>
+            <input
+              type="text"
+              class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
+              placeholder="請填寫套票金額"
+            />
+          </div>
+          <div
+            class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mb-4"
+          >
+            <label class="text-highlight fw-bold" for="">套票組數</label>
+            <input
+              type="text"
+              class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
+              placeholder="請填寫套票組數"
+            />
+          </div>
+          <div
+            class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mb-4"
+          >
+            <label class="text-highlight fw-bold" for="">套票星級</label>
+            <input
+              type="text"
+              class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
+              placeholder="請填寫套票星級"
+            />
+          </div>
+          <div
+            class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-basline mb-6"
+          >
+            <label class="text-highlight fw-bold" for="">套票描述</label>
+            <textarea
+              name=""
+              id=""
+              class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
+              cols="30"
+              rows="5"
+              placeholder="請填寫套票描述（限 100 字）"
+            ></textarea>
+          </div>
+          <input
+            type="button"
+            class="submitBtn d-block mx-auto mx-sm-0 ms-sm-auto bg-highlight fs-20"
+            value="新增套票"
+          />
+        </form>
+      </section>
+    </div>
+    <main class="bg-easy">
+      <div class="container">
+        <div class="filterWrap">
+          <select name="filter" id="filter">
+            <option selected>地區搜尋</option>
+            <option value="全部">全部</option>
+            <option value="台北">台北</option>
+            <option value="台中">台中</option>
+            <option value="高雄">高雄</option>
+          </select>
+          <!-- 這裡用JS顯示幾筆機料 -->
+          <p class="filterTotalText"></p>
+        </div>
+        <ul class="d-flex">
+          <li>
+            <img src="" alt="" />
+            <h3>綠島自由行套裝行程</h3>
+            <p>
+              嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。
+            </p>
+            <div>
+              <p>剩下最後 8 組</p>
+              <p>$1,280</p>
+            </div>
+          </li>
+          <li>
+            <img src="" alt="" />
+            <h3>綠島自由行套裝行程</h3>
+            <p>
+              嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。
+            </p>
+            <div>
+              <p>剩下最後 8 組</p>
+              <p>$1,280</p>
+            </div>
+          </li>
+          <li>
+            <img src="" alt="" />
+            <h3>綠島自由行套裝行程</h3>
+            <p>
+              嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。
+            </p>
+            <div>
+              <p>剩下最後 8 組</p>
+              <p>$1,280</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </main>
+    
+    
+    <script type="modyle" src="../all.js"></script>
+  </body>
+</html>
