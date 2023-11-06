@@ -54,6 +54,7 @@
               type="text"
               class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
               placeholder="請填寫套票名稱"
+              required
             />
           </div>
           <div
@@ -62,9 +63,10 @@
             <label class="text-highlight fw-bold" for="imgUrl">圖片網址</label>
             <input
               id="imgUrl"
-              type="text"
+              type="url"
               class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
               placeholder="請填寫圖片網址"
+              required
             />
           </div>
           <div
@@ -77,6 +79,7 @@
               class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
               name="cityName"
               id="cityName"
+              required
             >
               <option selected>請填寫景點地區</option>
               <option value="台北">台北</option>
@@ -95,6 +98,8 @@
               type="text"
               class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
               placeholder="請填寫套票金額"
+              pattern="\d{3,7}"
+              required
             />
           </div>
           <div
@@ -108,6 +113,8 @@
               type="text"
               class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
               placeholder="請填寫套票組數"
+              pattern="\d{1,3}"
+              required
             />
           </div>
           <div
@@ -118,9 +125,13 @@
             >
             <input
               id="ticketGrade"
-              type="text"
+              type="number"
+              step="0.1"
+              min="0"
+              max="10"
               class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
               placeholder="請填寫套票星級"
+              required
             />
           </div>
           <div
@@ -135,7 +146,9 @@
               class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
               cols="30"
               rows="5"
+              maxlength="100"
               placeholder="請填寫套票描述（限 100 字）"
+              required
             ></textarea>
           </div>
           <input
@@ -148,10 +161,12 @@
     </div>
     <main class="bg-easy">
       <div class="container travelListWrap pt-16 pb-24">
-        <div class="d-flex flex-column flex-md-row filterWrap mb-10 ms-16">
+        <div
+          class="filterWrap d-flex flex-column flex-md-row align-items-baseline mb-10 ms-16"
+        >
           <select class="px-3 py-2 me-8" name="filter" id="filter">
             <option selected>地區搜尋</option>
-            <option value="全部">全部</option>
+            <option value="全部地區">全部地區</option>
             <option value="台北">台北</option>
             <option value="台中">台中</option>
             <option value="高雄">高雄</option>
@@ -167,6 +182,6 @@
     <%- include('./layout/footer'); -%>
 
     <script type="module" src="../main.js"></script>
-    <script type="modyle" src="../all.js"></script>
+    <script type="module" src="../all.js"></script>
   </body>
 </html>
