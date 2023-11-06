@@ -37,7 +37,7 @@
       </section>
       <section>
         <h2
-          class="fs-4 p-1 text-highlight border-bottom border-3 border-highlight mb-8"
+          class="fs-4 pb-1 text-highlight border-bottom border-3 border-highlight mb-8"
         >
           <i class="fs-5 fa-solid fa-circle-plus me-2"></i
           ><span>新增旅遊套票</span>
@@ -59,8 +59,9 @@
           <div
             class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mb-4"
           >
-            <label class="text-highlight fw-bold" for="">圖片網址</label>
+            <label class="text-highlight fw-bold" for="imgUrl">圖片網址</label>
             <input
+              id="imgUrl"
               type="text"
               class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
               placeholder="請填寫圖片網址"
@@ -69,11 +70,13 @@
           <div
             class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mb-4"
           >
-            <label class="text-highlight fw-bold" for="city">景點地區</label>
+            <label class="text-highlight fw-bold" for="cityName"
+              >景點地區</label
+            >
             <select
               class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
-              name="city"
-              id="city"
+              name="cityName"
+              id="cityName"
             >
               <option selected>請填寫景點地區</option>
               <option value="台北">台北</option>
@@ -84,8 +87,11 @@
           <div
             class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mb-4"
           >
-            <label class="text-highlight fw-bold" for="">套票金額</label>
+            <label class="text-highlight fw-bold" for="ticketPrice"
+              >套票金額</label
+            >
             <input
+              id="ticketPrice"
               type="text"
               class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
               placeholder="請填寫套票金額"
@@ -94,8 +100,11 @@
           <div
             class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mb-4"
           >
-            <label class="text-highlight fw-bold" for="">套票組數</label>
+            <label class="text-highlight fw-bold" for="ticketNum"
+              >套票組數</label
+            >
             <input
+              id="ticketNum"
               type="text"
               class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
               placeholder="請填寫套票組數"
@@ -104,8 +113,11 @@
           <div
             class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mb-4"
           >
-            <label class="text-highlight fw-bold" for="">套票星級</label>
+            <label class="text-highlight fw-bold" for="ticketGrade"
+              >套票星級</label
+            >
             <input
+              id="ticketGrade"
               type="text"
               class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
               placeholder="請填寫套票星級"
@@ -114,10 +126,12 @@
           <div
             class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-basline mb-6"
           >
-            <label class="text-highlight fw-bold" for="">套票描述</label>
+            <label class="text-highlight fw-bold" for="ticketDescription"
+              >套票描述</label
+            >
             <textarea
-              name=""
-              id=""
+              name="ticketDescription"
+              id="ticketDescription"
               class="border-0 border-highlight border-bottom border-1 bg-soft py-2 ps-3"
               cols="30"
               rows="5"
@@ -133,9 +147,9 @@
       </section>
     </div>
     <main class="bg-easy">
-      <div class="container">
-        <div class="filterWrap">
-          <select name="filter" id="filter">
+      <div class="container travelListWrap pt-16 pb-24">
+        <div class="d-flex flex-column flex-md-row filterWrap mb-10 ms-16">
+          <select class="px-3 py-2 me-8" name="filter" id="filter">
             <option selected>地區搜尋</option>
             <option value="全部">全部</option>
             <option value="台北">台北</option>
@@ -145,41 +159,9 @@
           <!-- 這裡用JS顯示幾筆機料 -->
           <p class="filterTotalText"></p>
         </div>
-        <ul class="d-flex">
-          <li>
-            <img src="" alt="" />
-            <h3>綠島自由行套裝行程</h3>
-            <p>
-              嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。
-            </p>
-            <div>
-              <p>剩下最後 8 組</p>
-              <p>$1,280</p>
-            </div>
-          </li>
-          <li>
-            <img src="" alt="" />
-            <h3>綠島自由行套裝行程</h3>
-            <p>
-              嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。
-            </p>
-            <div>
-              <p>剩下最後 8 組</p>
-              <p>$1,280</p>
-            </div>
-          </li>
-          <li>
-            <img src="" alt="" />
-            <h3>綠島自由行套裝行程</h3>
-            <p>
-              嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。
-            </p>
-            <div>
-              <p>剩下最後 8 組</p>
-              <p>$1,280</p>
-            </div>
-          </li>
-        </ul>
+        <div
+          class="travelListDisplay row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"
+        ></div>
       </div>
     </main>
     <%- include('./layout/footer'); -%>

@@ -21,6 +21,7 @@ img {
   }
 }
 
+// form wrap
 .inputWrap {
   max-width: 920px !important;
   @media (min-width: 768px) {
@@ -35,6 +36,7 @@ img {
   height: 250px;
 }
 
+//  logo
 .indexLogo {
   display: none;
   @media (min-width: 768px) {
@@ -49,6 +51,7 @@ img {
   }
 }
 
+// form
 form {
   input {
     width: 100% !important;
@@ -81,6 +84,56 @@ form {
       background: $soft !important;
     }
     @media (min-width: 768px) {
+    }
+  }
+}
+
+// bottom wrap
+.travelListWrap {
+  max-width: 1100px !important;
+  .filterWrap {
+    select {
+      width: 28%;
+      color: #818a91 !important;
+      border-color: #ced4da !important;
+      border-radius: 4px !important;
+    }
+    p {
+      color: #818a91 !important;
+    }
+  }
+  .card {
+    border: none !important;
+    box-shadow: 0px 3px 6px #00000029 !important;
+    .imgWrap {
+      transition: all 0.3s ease;
+      img {
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+      .cityTag {
+        color: $white !important;
+        background-color: #64c3bf !important;
+        top: -12px !important;
+        border-radius: 0 3px 3px 0 !important;
+      }
+      .gradingTag {
+        color: $white !important;
+        bottom: 4px !important;
+        border-radius: 0 3px 3px 0 !important;
+      }
+    }
+    .card-body {
+      h4 {
+        &:hover {
+          cursor: pointer;
+          opacity: 0.7;
+        }
+      }
+    }
+    .card-footer {
+      border: none !important;
     }
   }
 }
