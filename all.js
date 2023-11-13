@@ -39,6 +39,7 @@ let data = [
 ];
 
 // 表單 DOM
+const formEl = document.querySelector(".formWrap");
 const ticketName = document.querySelector("#ticketName");
 const imgUrl = document.querySelector("#imgUrl");
 const cityName = document.querySelector("#cityName");
@@ -55,9 +56,10 @@ const filterTotalText = document.querySelector(".filterTotalText");
 // 最終呈現 DOM
 const travelListDisplay = document.querySelector(".travelListDisplay");
 
-function init() {
+function renderCard(renderData) {
   let str = ``;
-  data.forEach(function (item) {
+
+  renderData.forEach(function (item) {
     str += `
     <div class="col">
     <div class="card h-100">
@@ -104,37 +106,58 @@ function init() {
     </div>
   </div>`;
   });
+
   travelListDisplay.innerHTML = str;
 
-  filterTotalText.textContent = `本次搜尋共 ${data.length} 筆資料`;
+  filterTotalText.textContent = `本次搜尋共 ${renderData.length} 筆資料`;
 }
 
-init();
+renderCard(data);
 
+// 新增套票功能
 submitBtn.addEventListener("click", function (e) {
+  if (
+    ticketName.value == "" ||
+    imgUrl.value == "" ||
+    cityName.value == "" ||
+    ticketDescription.value == "" ||
+    ticketNum.value == "" ||
+    ticketPrice.value == "" ||
+    ticketGrade.value == ""
+  ) {
+    alert("請填寫完整資訊！！");
+    return;
+  }
+
   let obj = {};
   obj.id = data.length;
   obj.name = ticketName.value;
   obj.imgUrl = imgUrl.value;
   obj.area = cityName.value;
   obj.description = ticketDescription.value;
-  obj.group = ticketNum.value;
-  obj.price = ticketPrice.value;
-  obj.rate = ticketGrade.value;
+  obj.group = Number(ticketNum.value);
+  obj.price = Number(ticketPrice.value);
+  obj.rate = Number(ticketGrade.value);
 
   // 把新的資料加進 data 資料庫
   data.push(obj);
 
-  ticketName.value = "";
-  imgUrl.value = "";
-  cityName.value = "請填寫景點地區";
-  ticketDescription.value = "";
-  ticketNum.value = "";
-  ticketPrice.value = "";
-  ticketGrade.value = "";
+  // 清空表單內容
+  formEl.reset();
+  // 上方 reset() 等於下面這段
+  // ticketName.value = "";
+  // imgUrl.value = "";
+  // cityName.value = "請填寫景點地區";
+  // ticketDescription.value = "";
+  // ticketNum.value = "";
+  // ticketPrice.value = "";
+  // ticketGrade.value = "";
 
   // 加完資料後再次渲染 travelListDisplay
   init();
+
+  // 加完資料後，把篩選回到預設值「地區搜尋」
+  filter.value = "地區搜尋";
 });
 
 filter.addEventListener("change", function (e) {
@@ -142,110 +165,16 @@ filter.addEventListener("change", function (e) {
     return;
   }
 
-  let str = ``;
-  //   計算總共有幾筆資料
-  let count = 0;
-  data.forEach(function (item) {
-    if (e.target.value === "全部地區") {
-      str += `
-        <div class="col">
-        <div class="card h-100">
-          <div class="imgWrap position-relative z-1">
-            <a href="#">
-              <img
-                src="${item.imgUrl}"
-                class="card-img-top mb-5"
-                alt="${item.name}"
-              />
-            </a>
-            <div class="cityTag fs-5 position-absolute z-2 px-5 py-2">
-              ${item.area}
-            </div>
-            <div
-              class="gradingTag position-absolute z-2 bg-highlight px-2 py-1"
-            >
-              ${item.rate}
-            </div>
-          </div>
-          <div class="card-body">
-            <h4
-              class="card-title fw-medium text-highlight border-bottom border-3 border-highlight pb-1 mb-4"
-            >
-              ${item.name}
-            </h4>
-            <p class="card-text mb-8">
-              ${item.description}
-            </p>
-          </div>
-          <div class="card-footer bg-white">
-            <ul
-              class="list-unstyled d-flex justify-content-between align-items-start text-highlight"
-            >
-              <li>
-                <i class="fa-solid fa-circle-exclamation me-1"></i>剩下最後
-                ${item.group} 組
-              </li>
-              <li class="d-flex align-items-basline">
-                TWD<span class="fs-2 fw-medium ms-1">${item.price}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>`;
+  if (e.target.value === "全部地區") {
+    renderCard(data);
+  } else {
+    let tempData = [];
+    data.forEach(function (item) {
+      if (e.target.value === item.area) {
+        tempData.push(item);
+      }
+    });
 
-      count++;
-    } else if (e.target.value === item.area) {
-      str += `
-        <div class="col">
-        <div class="card h-100">
-          <div class="imgWrap position-relative z-1">
-            <a href="#">
-              <img
-                src="${item.imgUrl}"
-                class="card-img-top mb-5"
-                alt="${item.name}"
-              />
-            </a>
-            <div class="cityTag fs-5 position-absolute z-2 px-5 py-2">
-              ${item.area}
-            </div>
-            <div
-              class="gradingTag position-absolute z-2 bg-highlight px-2 py-1"
-            >
-              ${item.rate}
-            </div>
-          </div>
-          <div class="card-body">
-            <h4
-              class="card-title fw-medium text-highlight border-bottom border-3 border-highlight pb-1 mb-4"
-            >
-              ${item.name}
-            </h4>
-            <p class="card-text mb-8">
-              ${item.description}
-            </p>
-          </div>
-          <div class="card-footer bg-white">
-            <ul
-              class="list-unstyled d-flex justify-content-between align-items-start text-highlight"
-            >
-              <li>
-                <i class="fa-solid fa-circle-exclamation me-1"></i>剩下最後
-                ${item.group} 組
-              </li>
-              <li class="d-flex align-items-basline">
-                TWD<span class="fs-2 fw-medium ms-1">${item.price}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>`;
-
-      count++;
-    }
-  });
-
-  travelListDisplay.innerHTML = str;
-
-  filterTotalText.textContent = `本次搜尋共 ${count} 筆資料`;
+    renderCard(tempData);
+  }
 });
