@@ -1,43 +1,3 @@
-// js 程式碼
-let data = [
-  {
-    id: 0,
-    name: "綠島自由行套裝行程",
-    imgUrl:
-      "https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_1.png?raw=true",
-    area: "台北",
-    description:
-      "嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。",
-    group: 8,
-    price: 1280,
-    rate: 8.6,
-  },
-  {
-    id: 1,
-    name: "清境高空觀景步道二日遊",
-    imgUrl:
-      "https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_4.png?raw=true",
-    area: "台北",
-    description:
-      "清境農場青青草原數十公頃碧草，餵食著數以百計的綿羊和牛群，中央山脈最高的北三段群峰形成一堵如帶的高牆，攔住清晨的薄霧山嵐，成就了從花蓮翻山而來的雲瀑在濁水溪谷積成雲海，這些景觀豐沛了清境觀景步道的風格，也涵養它無可取代的特色。",
-    group: 12,
-    price: 2580,
-    rate: 8.2,
-  },
-  {
-    id: 2,
-    name: "南庄度假村露營車二日遊",
-    imgUrl:
-      "https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_6.png?raw=true",
-    area: "台中",
-    description:
-      "南庄雲水豪華露營車，快來擁有最愜意的露營體驗吧！一泊一食，輕鬆享受露營車樂趣。 獨立衛浴與私人戶外露臺。入住豪華露營車還能使用戶外SPA大眾湯，感受美人湯魅力。",
-    group: 2,
-    price: 2480,
-    rate: 9.2,
-  },
-];
-
 // 表單 DOM
 const formEl = document.querySelector(".formWrap");
 const ticketName = document.querySelector("#ticketName");
@@ -56,6 +16,26 @@ const filterTotalText = document.querySelector(".filterTotalText");
 // 最終呈現 DOM
 const travelListDisplay = document.querySelector(".travelListDisplay");
 
+// 宣告一個陣列來存取 res 中的資料
+let cleanData;
+
+// 發 get request 取得外部資料
+axios
+  .get(
+    "https://raw.githubusercontent.com/hexschool/js-training/main/travelApi.json"
+  )
+  .then(function (res) {
+    // console.log(res);
+    // response 物件底下的 data 是物件，我們要拿的是該物件底下的 data 陣列，所以用 res.data.data 取得
+    cleanData = res.data.data;
+    // console.log(cleanData);
+    renderCard(cleanData);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+// 渲染畫面
 function renderCard(renderData) {
   let str = ``;
 
@@ -112,8 +92,6 @@ function renderCard(renderData) {
   filterTotalText.textContent = `本次搜尋共 ${renderData.length} 筆資料`;
 }
 
-renderCard(data);
-
 // 新增套票功能
 submitBtn.addEventListener("click", function (e) {
   if (
@@ -130,7 +108,7 @@ submitBtn.addEventListener("click", function (e) {
   }
 
   let obj = {};
-  obj.id = data.length;
+  obj.id = cleanData.length;
   obj.name = ticketName.value;
   obj.imgUrl = imgUrl.value;
   obj.area = cityName.value;
@@ -140,7 +118,7 @@ submitBtn.addEventListener("click", function (e) {
   obj.rate = Number(ticketGrade.value);
 
   // 把新的資料加進 data 資料庫
-  data.push(obj);
+  cleanData.push(obj);
 
   // 清空表單內容
   formEl.reset();
@@ -154,7 +132,7 @@ submitBtn.addEventListener("click", function (e) {
   // ticketGrade.value = "";
 
   // 加完資料後再次渲染 travelListDisplay
-  init();
+  renderCard(cleanData);
 
   // 加完資料後，把篩選回到預設值「地區搜尋」
   filter.value = "地區搜尋";
@@ -166,10 +144,11 @@ filter.addEventListener("change", function (e) {
   }
 
   if (e.target.value === "全部地區") {
-    renderCard(data);
+    renderCard(cleanData);
   } else {
+    // tempData 用來暫時存取篩選到的地區物件
     let tempData = [];
-    data.forEach(function (item) {
+    cleanData.forEach(function (item) {
       if (e.target.value === item.area) {
         tempData.push(item);
       }
