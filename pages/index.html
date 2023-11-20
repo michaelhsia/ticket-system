@@ -17,6 +17,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="../node_modules/c3/c3.css" />
     <title>index</title>
   </head>
   <body>
@@ -162,23 +163,34 @@
     <main class="bg-easy">
       <div class="container travelListWrap pt-16 pb-24">
         <div
-          class="filterWrap d-flex flex-column flex-md-row align-items-baseline mb-10 ms-16"
+          class="d-flex flex-column flex-md-row justify-content-between align-items-md-start align-items-center mb-10"
         >
-          <select class="px-3 py-2 me-8" name="filter" id="filter">
-            <option selected>地區搜尋</option>
-            <option value="全部地區">全部地區</option>
-            <option value="台北">台北</option>
-            <option value="台中">台中</option>
-            <option value="高雄">高雄</option>
-          </select>
-          <!-- 這裡用JS顯示幾筆機料 -->
-          <p class="filterTotalText"></p>
+          <div
+            class="filterWrap d-flex flex-column flex-md-row align-items-md-baseline align-items-center"
+          >
+            <select
+              class="px-3 py-2 me-md-8 mb-6 mb-md-0"
+              name="filter"
+              id="filter"
+            >
+              <option selected>地區搜尋</option>
+              <option value="全部地區">全部地區</option>
+              <option value="台北">台北</option>
+              <option value="台中">台中</option>
+              <option value="高雄">高雄</option>
+            </select>
+            <!-- 這裡用JS顯示幾筆機料 -->
+            <p class="filterTotalText"></p>
+          </div>
+          <div id="chart"></div>
         </div>
+
         <div
           class="travelListDisplay row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"
         ></div>
       </div>
     </main>
+
     <%- include('./layout/footer'); -%>
 
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>

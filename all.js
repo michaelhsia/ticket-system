@@ -1,3 +1,5 @@
+import c3 from "c3";
+
 // 表單 DOM
 const formEl = document.querySelector(".formWrap");
 const ticketName = document.querySelector("#ticketName");
@@ -28,8 +30,9 @@ axios
     // console.log(res);
     // response 物件底下的 data 是物件，我們要拿的是該物件底下的 data 陣列，所以用 res.data.data 取得
     cleanData = res.data.data;
-    // console.log(cleanData);
+    console.log(cleanData);
     renderCard(cleanData);
+    renderC3(cleanData);
   })
   .catch(function (error) {
     console.log(error);
@@ -131,13 +134,14 @@ submitBtn.addEventListener("click", function (e) {
   // ticketPrice.value = "";
   // ticketGrade.value = "";
 
-  // 加完資料後再次渲染 travelListDisplay
+  // 加完資料後再次渲染 travelListDisplay 及圖表
   renderCard(cleanData);
-
+  renderC3(cleanData);
   // 加完資料後，把篩選回到預設值「地區搜尋」
   filter.value = "地區搜尋";
 });
 
+// 篩選功能
 filter.addEventListener("change", function (e) {
   if (e.target.value === undefined) {
     return;
@@ -145,6 +149,7 @@ filter.addEventListener("change", function (e) {
 
   if (e.target.value === "全部地區") {
     renderCard(cleanData);
+    renderC3(cleanData);
   } else {
     // tempData 用來暫時存取篩選到的地區物件
     let tempData = [];
@@ -155,5 +160,60 @@ filter.addEventListener("change", function (e) {
     });
 
     renderCard(tempData);
+    renderC3(tempData);
   }
 });
+
+function renderC3(renderData) {
+  console.log(renderData);
+
+  // 先計算每個城市的數量
+  let totalObj = {};
+  renderData.forEach(function (item) {
+    if (totalObj[item.area] === undefined) {
+      totalObj[item.area] = 1;
+    } else {
+      totalObj[item.area] += 1;
+    }
+  });
+  // console.log(totalObj);
+
+  // 把回傳的陣列包物件，轉成 C3 要的陣列包陣列
+  let newArr = [];
+  let city = Object.keys(totalObj);
+  city.forEach(function (item) {
+    let arr = [];
+    arr.push(item);
+    arr.push(totalObj[item]);
+    newArr.push(arr);
+  });
+  // console.log(newArr);
+
+  const chart = c3.generate({
+    // 自訂大小
+    size: {
+      height: 240,
+      width: 300,
+    },
+    data: {
+      columns: newArr,
+      // 圖表類型
+      type: "donut",
+      // 自訂顏色
+      colors: {
+        台北: "#26BFC7",
+        台中: "#5151D3",
+        高雄: "#E68618",
+      },
+    },
+    // 圖表標題
+    donut: {
+      title: "套票地區比重",
+    },
+
+    // 數據懸浮顯示
+    tooltip: {
+      show: true,
+    },
+  });
+}
