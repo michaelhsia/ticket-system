@@ -209,6 +209,10 @@ function renderC3(renderData) {
     // 圖表標題
     donut: {
       title: "套票地區比重",
+      width: 12, // 調整 donut 粗細
+      label: {
+        show: false, // 隱藏百分比文字
+      },
     },
 
     // 數據懸浮顯示
